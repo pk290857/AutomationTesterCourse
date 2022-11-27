@@ -65,7 +65,6 @@ public class TestClass {
         listFields.add("#field-address1") ;
         listFields.add("#field-city") ;
         listFields.add("#field-postcode") ;
-        //listFields.add("#field-id_country") ;
         listFields.add("#field-phone") ;
 
         listFieldElems.clear();
