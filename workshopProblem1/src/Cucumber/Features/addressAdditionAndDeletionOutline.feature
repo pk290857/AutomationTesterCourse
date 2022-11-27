@@ -13,5 +13,6 @@ Feature: adding and deleting an address
     Examples:
       | alias       | address        | city     | zip     | phoneNumber   |
       | Guie1971    | 84 Manor Close | DIDSBURY | M20 0YB | 070 5124 9699 |
+      | Guie1971aaa    | 84 Manor Closeaaaa | DIDSBURYaaa | M20 0YBaaa | 070 5124 9699111 |
 
 
