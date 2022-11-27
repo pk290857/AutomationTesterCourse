@@ -1,9 +1,7 @@
-/*
 package org.example;
 
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,7 +20,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static utilsPK.findElems.*;
 
-public class addressSteps {
+public class addressStepsOutline {
 
     WebDriver driver ;
     WebElement buttElem ;
@@ -85,8 +83,8 @@ public class addressSteps {
         buttElem = findBySelectorPK("#content > div.addresses-footer > a" , driver) ;
         buttElem.click();
     }
-    @And("the required fields are filled")
-    public void fillingRequiredFields(){
+    @And("^the required fields are filled with (.*) and (.*) and (.*) and (.*) and (.*)")
+    public void fillingRequiredFields(String alias , String address , String city , String zip , String phone){
         listFields.clear();
         listFields.add("#field-alias") ;
         listFields.add("#field-address1") ;
@@ -95,14 +93,15 @@ public class addressSteps {
         listFields.add("#field-phone") ;
 
 
+
         listFieldElems = findBySelectorsPK(listFields , driver) ;
 
         listKeys.clear();
-        listKeys.add("Guie1971") ;
-        listKeys.add("84 Manor Close");
-        listKeys.add("DIDSBURY");
-        listKeys.add("M20 0YB");
-        listKeys.add("070 5124 9699");
+        listKeys.add(alias) ;
+        listKeys.add(address);
+        listKeys.add(city);
+        listKeys.add(zip);
+        listKeys.add(phone);
         sendKeysPK(listFieldElems , listKeys);
 
         buttElem = findBySelectorPK("#field-id_country" , driver) ;
@@ -146,12 +145,8 @@ public class addressSteps {
         int auxLengthAfterDeletion = elemAux.size() ;
         Assertions.assertEquals(auxLengthBeforeAddition , auxLengthAfterDeletion);
 
-        //this test lacks verification if the just added address was the one deleted;
-        //to this aim one could  implement randomization of the address data
-        // and checking whether there still exists the just added and removed address
     }
 
 
 
 }
-*/
