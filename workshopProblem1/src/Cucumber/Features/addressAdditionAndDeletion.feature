@@ -8,4 +8,6 @@ Feature: adding and deleting an address
     And the required fields are filled
     And submitted
     Then the new address is displayed
+    When deleting the new address
+    Then the new address is deleted
 

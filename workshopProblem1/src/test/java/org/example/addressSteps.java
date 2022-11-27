@@ -129,6 +129,26 @@ public class addressSteps {
             assertEquals(listKeys.get(i) , listStr.get(i) );
         }
     }
+    @When("deleting the new address")
+    public void deletingTheAddress(){
+        elemAux.clear();
+        elemAux = driver.findElements(By.cssSelector(".page-addresses .address .address-footer a")) ;
+        elemAux.get(elemAux.size()-1).click();
+    }
+    @Then("the new address is deleted")
+    public void verifyingIfDeleted(){
+        buttElem = findBySelectorPK( "#notifications > div > article", driver) ;
+        org.assertj.core.api.Assertions.assertThat(buttElem.getText()).contains("successfully deleted") ;
+
+        elemAux.clear();
+        elemAux = driver.findElements(By.cssSelector(".address-body")) ;
+        int auxLengthAfterDeletion = elemAux.size() ;
+        Assertions.assertEquals(auxLengthBeforeAddition , auxLengthAfterDeletion);
+
+        //this test lacks verification if the just added address was the one deleted;
+        //to this aim one could  implement randomization of the address data
+        // and checking whether there still exists the just added and removed address
+    }
 
 
 
