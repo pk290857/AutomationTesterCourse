@@ -30,7 +30,8 @@ public class TestClass {
     void test1(){
         System.setProperty("webdriver.chrome.driver", "src/test/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver() ;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //stosuje sie tylko raz
+        // explicite wait : istala sie konkretne warunki ale tez tylko raz sie wywoluje ;
         driver.get("https://mystore-testlab.coderslab.pl/");
 
 
@@ -100,7 +101,7 @@ public class TestClass {
         //czy liczba OK?
         buttElem = findBySelectorPK("#blockcart-modal > div > div > div.modal-body > div > div.col-md-5.divide-right > div > div:nth-child(2) > span.product-quantity" , driver) ;
         auxStr = buttElem.getText();
-        System.out.println(auxStr);
+        //System.out.println(auxStr);
         org.assertj.core.api.Assertions.assertThat(auxStr).contains("Quantity: 5");
 
 
@@ -143,31 +144,25 @@ public class TestClass {
         //#payment-confirmation > div.ps-shown-by-js > button
         buttElem = findBySelectorPK("#payment-confirmation > div.ps-shown-by-js > button\n", driver);
         buttElem.click();//zatwierdz zamowienie
-        //czy kwota OK?
-        //#order-items > div.order-confirmation-table > div > div.col-sm-6.col-xs-12.qty > div > div.col-xs-4.text-sm-center.text-xs-left
-        /*buttElem = findBySelectorPK("#order-items > div.order-confirmation-table > div > div.col-sm-6.col-xs-12.qty > div > div.col-xs-4.text-sm-center.text-xs-left", driver);
-        auxStr = buttElem.getText() ;
-        System.out.println(auxStr);*/
-//        org.assertj.core.api.Assertions.assertThat(auxStr).isEqualTo("5") ;
 
         //czy liczba OK?
         buttElem = findBySelectorPK("#order-items > div.order-confirmation-table > div > div.col-sm-6.col-xs-12.qty > div > div:nth-child(2)", driver);
         auxStr = buttElem.getText() ;
-        System.out.println(auxStr);
+        //System.out.println(auxStr);
         org.assertj.core.api.Assertions.assertThat(auxStr).isEqualTo("5") ;
 //
         // czy laczna kwota OK ?
         //
         buttElem = findBySelectorPK("#order-items > div.order-confirmation-table > div > div.col-sm-6.col-xs-12.qty > div > div.col-xs-4.text-sm-center.text-xs-right.bold", driver);
         auxStr = buttElem.getText() ;
-        System.out.println(auxStr);
+        //System.out.println(auxStr);
         org.assertj.core.api.Assertions.assertThat(auxStr).isEqualTo(auxStrMemory) ;
 
         //czy jest napis confirmed
         //#content-hook_order_confirmation > div > div > div > h3
         buttElem = findBySelectorPK("#content-hook_order_confirmation > div > div > div > h3", driver);
         auxStr = buttElem.getText();
-        System.out.println(auxStr);
+        //System.out.println(auxStr);
         org.assertj.core.api.Assertions.assertThat(auxStr).containsIgnoringCase("is confirmed");
 
         TakesScreenshot screenshot = (TakesScreenshot) driver;
@@ -177,6 +172,8 @@ public class TestClass {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        driver.findElements(By.te
 
         driver.quit();
     }
